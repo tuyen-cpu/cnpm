@@ -2,7 +2,7 @@ package test;
 
 import controller.ControllerMangaEmpl;
 import view.ViewEmployeeManager;
-import view.view;
+import view.ViewAddEmpoyee;
 
 
 
