@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectDB {
-	private static String url = "jdbc:sqlserver://localhost;databaseName=";
+	private static String url = "jdbc:sqlserver://localhost;databaseName=CNPM";
 	private static String username = "sa";
 	private static String password = "123";
 	private static String driverClass = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
@@ -20,4 +20,5 @@ public class ConnectDB {
 	public static Connection getConnection() throws SQLException {
 		return DriverManager.getConnection(url, username, password);
 	}
+	
 }

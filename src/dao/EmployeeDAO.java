@@ -13,10 +13,11 @@ public class EmployeeDAO {
 		try {
 			connection = ConnectDB.getConnection();
 			PreparedStatement stmt = connection
-					.prepareStatement("INSERT INTO EMPLOYEE VALUES ( ?, ?, ?)");
+					.prepareStatement("INSERT INTO Employee VALUES ( ?, ?, ?,?)");
 			stmt.setString(1, employee.getName());
 			stmt.setString(2, employee.getPhoneNum());
 			stmt.setString(3, employee.getAddress());
+			stmt.setString(4, employee.getUserName());
 			stmt.executeUpdate();
 			stmt.close();
 

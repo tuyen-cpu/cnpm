@@ -18,11 +18,11 @@ public class AccountDAO {
 		try {
 			connection = ConnectDB.getConnection();
 			PreparedStatement stmt = connection
-					.prepareStatement("INSERT INTO EMPLOYEE VALUES (?, ?, ?, ?)");
-			stmt.setInt(1, account.getIdEmployee());
-			stmt.setString(2, account.getUserName());
-			stmt.setString(3, encodeMD5(account.getPassword()));
-			stmt.setInt(4, account.getRole());
+					.prepareStatement("INSERT INTO Account VALUES ( ?, ?, ?)");
+			
+			stmt.setString(1, account.getUserName());
+			stmt.setString(2, encodeMD5(account.getPassword()));
+			stmt.setInt(3, account.getRole());
 			stmt.executeUpdate();
 			stmt.close();
 			

@@ -1,15 +1,17 @@
 package model;
 
 public class Employee {
-private int id;
+	private int id;
 	private String name;
 	private String phoneNum;
 	private String address;
-	public Employee( String name, String phoneNum, String address) {
+	private String userName;
+	public Employee( String name, String phoneNum, String address,String userName) {
 		super();
 		this.name = name;
 		this.phoneNum = phoneNum;
 		this.address = address;
+		this.userName= userName;
 	}
 	public Employee(){
 		
@@ -37,6 +39,13 @@ private int id;
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 @Override
 	public String toString() {
