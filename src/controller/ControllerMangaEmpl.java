@@ -15,37 +15,72 @@ import model.Account;
 import model.Employee;
 
 public class ControllerMangaEmpl {
+	String txtNameTemp,txtUserNameTemp,txtAddressTemp,txtPhoneTemp;
 	ViewEmployeeManager viewEmployeeManager;
 	ViewAddEmpoyee viewAddEmpoyee;
 	EmployeeDAO employeeDAO;
-AccountDAO accountDAO;
+	AccountDAO accountDAO;
+	String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,10}";
 	public ControllerMangaEmpl() {
+		this.txtNameTemp="khoitao";
+		this.txtUserNameTemp="khoitao";
+		this.txtAddressTemp="khoitao";
+		this.txtPhoneTemp="khoitao";
 		viewEmployeeManager = new ViewEmployeeManager("Quản lý nhân viên");
 		viewEmployeeManager.getBtnAdd().addActionListener(e -> showPopupForm());
 
 	}
 
 	public void showPopupForm() {
-
+		
 		viewAddEmpoyee = new ViewAddEmpoyee();
+		
 		if (viewAddEmpoyee.option() == JOptionPane.OK_OPTION) {
 			if(checkInput()){
-			addEmployee();}
+			if(addEmployee()==true){
+				showMessageDilogSuccess("Thêm thành công");
+			}else{
+				showMessageDilogError("Trùng tên đăng nhập");
+			}
+			}
+			
+			
 		}
 	}
-public void addEmployee(){
+public boolean addEmployee(){
 	Account account = new Account(viewAddEmpoyee.getTxtUserName().getText(),
 			String.valueOf(
 					viewAddEmpoyee.getTxtPasswordConfirm().getPassword()),1);
 	accountDAO = new AccountDAO();
-	accountDAO.insert(account);
+	if(accountDAO.insert(account)==true){
+		
+		System.out.println("them xong account");
+	}else{
+		System.out.println("lỗi account");
+		return false;
+	}
+		
+		
+	
 	Employee e = new Employee(viewAddEmpoyee.getTxtName().getText(),
 			viewAddEmpoyee.getTxtPhoneNum().getText(), viewAddEmpoyee
 					.getTxtAdress().getText(),viewAddEmpoyee.getTxtUserName().getText());
 	employeeDAO = new EmployeeDAO();
-	employeeDAO.insert(e);
+	
+		
+		if(employeeDAO.insert(e)==true){
+			System.out.println("them ok employ");
+		}else{
+			System.out.println("lỗi");
+			return false;
+		}
+	
+return true;
+	
 }
 	public boolean checkInput() {
+
+		
 		if (viewAddEmpoyee.getTxtName().getText().equals("")
 				|| viewAddEmpoyee.getTxtUserName().getText().equals("")
 				|| String
@@ -54,20 +89,33 @@ public void addEmployee(){
 				|| String.valueOf(
 						viewAddEmpoyee.getTxtPasswordConfirm().getPassword())
 						.equals("")) {
-
-			JOptionPane.showMessageDialog(null, "Vui lòng nhập đủ thông tin",
-					"Thông báo", JOptionPane.ERROR_MESSAGE);
+			this.txtNameTemp=viewAddEmpoyee.getTxtName().getText();
+			
+			this.showMessageDilogError("Vui lòng nhập đủ thông tin");
 			showPopupForm();
 			return false;
 		}
 		if (!String.valueOf(viewAddEmpoyee.getTxtPassword().getPassword())
 				.equals(String.valueOf(viewAddEmpoyee.getTxtPasswordConfirm()
 						.getPassword()))) {
-			JOptionPane.showMessageDialog(null, "Mật khẩu không khớp",
-					"Thông báo", JOptionPane.ERROR_MESSAGE);
+			this.showMessageDilogError("Mật khẩu không khớp");
 			showPopupForm();
 			return false;
 		}
+		if(String.valueOf(viewAddEmpoyee.getTxtPassword().getPassword()).matches(pattern)==false){
+			this.showMessageDilogError("Tối thiểu tám và tối đa 10 ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt:");
+			showPopupForm();
+			return false;
+		}
+		
 		return true;
+	}
+	public void showMessageDilogError(String error){
+		JOptionPane.showMessageDialog(null, error,
+				"Thông báo", JOptionPane.ERROR_MESSAGE);
+	}
+	public void showMessageDilogSuccess(String error){
+		JOptionPane.showMessageDialog(null, error,
+				"Thông báo", JOptionPane.OK_OPTION);
 	}
 }

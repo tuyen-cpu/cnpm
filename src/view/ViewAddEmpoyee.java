@@ -1,10 +1,12 @@
 package view;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -91,6 +93,7 @@ public ViewAddEmpoyee(){
 	optionpane= JOptionPane.showOptionDialog(null, pnPopup, "Thêm nhân viên",
 			JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,
 			new String[] { "Lưu", "Hủy" }, "default");
+	
 }
 public int option(){
 	return optionpane;
@@ -99,38 +102,38 @@ public int option(){
 public JTextField getTxtAdress() {
 	return txtAdress;
 }
-public void setTxtAdress(JTextField txtAdress) {
-	this.txtAdress = txtAdress;
+public void setTxtAdress(String txtAdress) {
+	this.txtAdress.setText(txtAdress);
 }
 public JTextField getTxtName() {
 	return txtName;
 }
-public void setTxtName(JTextField txtName) {
-	this.txtName = txtName;
+public void setTxtName(String txtName) {
+	this.txtName.setText(txtName);
 }
 public JTextField getTxtUserName() {
 	return txtUserName;
 }
-public void setTxtUserName(JTextField txtUserName) {
-	this.txtUserName = txtUserName;
+public void setTxtUserName(String txtUserName) {
+	this.txtUserName.setText(txtUserName);
 }
 public JTextField getTxtPhoneNum() {
 	return txtPhoneNum;
 }
-public void setTxtPhoneNum(JTextField txtPhoneNum) {
-	this.txtPhoneNum = txtPhoneNum;
+public void setTxtPhoneNum(String txtPhoneNum) {
+	this.txtPhoneNum.setText(txtPhoneNum);
 }
 public JPasswordField getTxtPassword() {
 	return txtPassword;
 }
-public void setTxtPassword(JPasswordField txtPassword) {
-	this.txtPassword = txtPassword;
+public void setTxtPassword(String txtPassword) {
+	this.txtPassword.setText(txtPassword);;
 }
 public JPasswordField getTxtPasswordConfirm() {
 	return txtPasswordConfirm;
 }
-public void setTxtPasswordConfirm(JPasswordField txtPasswordConfirm) {
-	this.txtPasswordConfirm = txtPasswordConfirm;
+public void setTxtPasswordConfirm(String txtPasswordConfirm) {
+	this.txtPasswordConfirm.setText(txtPasswordConfirm); ;
 }
 
 }
