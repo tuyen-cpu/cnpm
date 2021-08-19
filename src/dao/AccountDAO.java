@@ -56,4 +56,32 @@ public class AccountDAO {
 
 	}
 
+	public static boolean findAcc(String uname, String pass) {
+		boolean result = false;
+		
+		Connection connection = null;
+		
+		try {
+			connection = ConnectDB.getConnection();
+			PreparedStatement stm = connection.prepareStatement("SELECT * FROM Account "
+					+ "WHERE UserName = uname AND Passwd = pass");
+			ResultSet rs = stm.executeQuery();
+			if (rs.next()) result = true; 
+			stm.close();
+			
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			return false;
+			
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException sqleClose) {
+				sqleClose.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+
 }

@@ -1,4 +1,4 @@
-package loginView;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
+
+import controller.LoginController;
 
 public class LoginForm {
 
@@ -111,7 +113,15 @@ public class LoginForm {
 			String uname = unameTxt.getText();
 			char[] pass = passTxt.getPassword();
 			if ((LoginInputValidation.isUnameValid(uname)) && (LoginInputValidation.isPassValid(pass))) {
-				System.out.println("abc");
+				/*
+				String passwd = new String(pass);
+				if (LoginController.findAccount(uname, passwd)) {
+					
+				} else {
+					JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không tồn tại");
+				}
+				*/
+				JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
 			} else {
 				JOptionPane.showMessageDialog(null, "Thông tin đăng nhập không hợp lệ");
 			}
