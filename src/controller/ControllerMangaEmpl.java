@@ -48,9 +48,9 @@ public class ControllerMangaEmpl {
 		}
 	}
 public boolean addEmployee(){
-	Account account = new Account(viewAddEmpoyee.getTxtUserName().getText(),
+	Account account = new Account(viewAddEmpoyee.getTxtUserName().getText().trim(),
 			String.valueOf(
-					viewAddEmpoyee.getTxtPasswordConfirm().getPassword()),1);
+					viewAddEmpoyee.getTxtPasswordConfirm().getPassword()).trim(),1);
 	accountDAO = new AccountDAO();
 	if(accountDAO.insert(account)==true){
 		
@@ -64,14 +64,12 @@ public boolean addEmployee(){
 	
 	Employee e = new Employee(viewAddEmpoyee.getTxtName().getText(),
 			viewAddEmpoyee.getTxtPhoneNum().getText(), viewAddEmpoyee
-					.getTxtAdress().getText(),viewAddEmpoyee.getTxtUserName().getText());
+					.getTxtAdress().getText(),viewAddEmpoyee.getTxtUserName().getText().trim());
 	employeeDAO = new EmployeeDAO();
 	
 		
 		if(employeeDAO.insert(e)==true){
-			System.out.println("them ok employ");
 		}else{
-			System.out.println("lỗi");
 			return false;
 		}
 	
