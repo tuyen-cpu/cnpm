@@ -57,9 +57,37 @@ public class AccountDAO {
 
 	}
 
-	public static boolean findAcc(String uname, String pass) {
+	public static boolean findAcc(String uname) {
 		String user = "'" + uname + "'";
-		String passwd = "'" + pass + "'";
+		boolean result = false;
+		
+		Connection connection = null;
+		
+		try {
+			connection = ConnectDB.getConnection();
+			PreparedStatement stm = connection.prepareStatement("SELECT * FROM Account WHERE "
+					+ " UserName = " + user);
+			ResultSet rs = stm.executeQuery();
+			if (rs.next()) result = true; 
+			stm.close();
+			
+		} catch (SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			return false;
+			
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException sqleClose) {
+				sqleClose.printStackTrace();
+			}
+		}
+		
+		return result;
+	}
+	
+	public static boolean checkPassword(String uname, String pass) {
+		String user = "'" + uname + "'";
 		boolean result = false;
 		
 		Connection connection = null;
@@ -86,5 +114,6 @@ public class AccountDAO {
 		
 		return result;
 	}
+	
 
 }

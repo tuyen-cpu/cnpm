@@ -5,12 +5,13 @@ import view.ViewAddEmpoyee;
 
 public class LoginController {
 	
-	public static boolean findAccount(String uname, String pass) {
-		if (AccountDAO.findAcc(uname, pass)) return true;
+	public static boolean findAccount(String uname) {
+		if (AccountDAO.findAcc(uname)) return true;
 		return false;
 	}
 	
-	public static void direct() {
-		new ViewAddEmpoyee();
+	public static boolean checkPassword(String uname, String pass) {
+		if (AccountDAO.checkPassword(uname, pass)) return true;
+		return false;
 	}
 }
