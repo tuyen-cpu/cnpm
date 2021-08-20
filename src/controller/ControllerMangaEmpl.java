@@ -20,6 +20,7 @@ public class ControllerMangaEmpl {
 	ViewAddEmpoyee viewAddEmpoyee;
 	EmployeeDAO employeeDAO;
 	AccountDAO accountDAO;
+	String regexUserName="^[a-z0-9._-]{3,15}$";
 	String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,10}";
 	public ControllerMangaEmpl() {
 		this.txtNameTemp="khoitao";
@@ -93,6 +94,11 @@ return true;
 			showPopupForm();
 			return false;
 		}
+		if(viewAddEmpoyee.getTxtUserName().getText().matches(regexUserName)==false){
+			this.showMessageDilogError("Tên đăng nhập phải tối thiểu 3 và tối đa 15 bao gồm các kí tự từ a-z ác chữ số 0 - 9 và một số kí tự đặc biệt: . - _");
+			showPopupForm();
+			return false;
+		}
 		if (!String.valueOf(viewAddEmpoyee.getTxtPassword().getPassword())
 				.equals(String.valueOf(viewAddEmpoyee.getTxtPasswordConfirm()
 						.getPassword()))) {
@@ -101,7 +107,7 @@ return true;
 			return false;
 		}
 		if(String.valueOf(viewAddEmpoyee.getTxtPassword().getPassword()).matches(pattern)==false){
-			this.showMessageDilogError("Tối thiểu tám và tối đa 10 ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt:");
+			this.showMessageDilogError("Mật khẩu tối thiểu tám và tối đa mười ký tự, ít nhất một chữ cái viết hoa, một chữ cái viết thường, một số và một ký tự đặc biệt:");
 			showPopupForm();
 			return false;
 		}
