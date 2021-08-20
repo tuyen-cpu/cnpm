@@ -115,7 +115,7 @@ return true;
 				"Thông báo", JOptionPane.ERROR_MESSAGE);
 	}
 	public void showMessageDilogSuccess(String error){
-		JOptionPane.showMessageDialog(null, error,
-				"Thông báo", JOptionPane.OK_OPTION);
+		JOptionPane.showMessageDialog(null, error
+				);
 	}
 }
