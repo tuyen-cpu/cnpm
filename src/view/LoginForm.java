@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -19,7 +20,6 @@ public class LoginForm {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JFrame mainFrame;
 	private JLabel unameLab, passLab;
 	private JTextField unameTxt;
 	private JPasswordField passTxt;
@@ -71,40 +71,45 @@ public class LoginForm {
 
 	// Constructor
 	public LoginForm() {
-		placeComponents();
+		JFrame mainFrame = new JFrame("Login");
+		mainFrame.setSize(300, 150);
+		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		JPanel panel = new JPanel();
+		mainFrame.add(panel);
+		placeComponents(panel);
+		
+		mainFrame.setVisible(true);
 	}
 
 	public static void main(String[] args) {
 		new LoginForm();
 	}
 
-	public void placeComponents() {
-		mainFrame = new JFrame("Login");
-		mainFrame.setLayout(null);
-		mainFrame.setSize(300, 150);
-		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-		mainFrame.setVisible(true);
-
+	public void placeComponents(JPanel pane) {
+		
+		pane.setLayout(null);
+		
 		unameLab = new JLabel("Username");
 		unameLab.setBounds(10, 10, 80, 25);
-		mainFrame.add(unameLab);
+		pane.add(unameLab);
 
 		unameTxt = new JTextField(20);
 		unameTxt.setBounds(100, 10, 160, 25);
-		mainFrame.add(unameTxt);
+		pane.add(unameTxt);
 
 		passLab = new JLabel("Password");
 		passLab.setBounds(10, 40, 80, 25);
-		mainFrame.add(passLab);
+		pane.add(passLab);
 
 		passTxt = new JPasswordField(20);
 		passTxt.setBounds(100, 40, 160, 25);
-		mainFrame.add(passTxt);
+		pane.add(passTxt);
 
 		JButton loginButton = new JButton("Login");
 		loginButton.setBounds(100, 80, 80, 25);
 		loginButton.addActionListener(new LoginListner());
-		mainFrame.add(loginButton);
+		pane.add(loginButton);
 	}
 
 	class LoginListner implements ActionListener {
@@ -113,15 +118,12 @@ public class LoginForm {
 			String uname = unameTxt.getText();
 			char[] pass = passTxt.getPassword();
 			if ((LoginInputValidation.isUnameValid(uname)) && (LoginInputValidation.isPassValid(pass))) {
-				/*
 				String passwd = new String(pass);
 				if (LoginController.findAccount(uname, passwd)) {
-					
+					JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
 				} else {
 					JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không tồn tại");
-				}
-				*/
-				JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+				}	
 			} else {
 				JOptionPane.showMessageDialog(null, "Thông tin đăng nhập không hợp lệ");
 			}
