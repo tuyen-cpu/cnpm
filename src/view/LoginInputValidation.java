@@ -12,8 +12,9 @@ public class LoginInputValidation {
 	}
 	
 	public static boolean isPassValid(char [] pass) {
-		String s = String.valueOf(pass);
-		if (s.matches(regularExp)) return true;
+		if (pass.length != 0) {
+			if (pass[0] != ' ') return true;
+		}
 		return false;
 	}
 	
