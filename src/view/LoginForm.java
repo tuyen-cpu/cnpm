@@ -117,12 +117,16 @@ public class LoginForm {
 		public void actionPerformed(ActionEvent e) {
 			String uname = unameTxt.getText();
 			char[] pass = passTxt.getPassword();
-			if ((LoginInputValidation.isUnameValid(uname)) && (LoginInputValidation.isPassValid(pass))) {
+			if (LoginInputValidation.isUnameValid(uname)) {
 				String passwd = new String(pass);
-				if (LoginController.findAccount(uname, passwd)) {
-					JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+				if (LoginController.findAccount(uname)) {
+					if (LoginController.checkPassword(uname, passwd)) {
+						JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+					} else {
+						JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không tồn tại");
+					JOptionPane.showMessageDialog(null, "Tên đăng nhập không tồn tại");
 				}	
 			} else {
 				JOptionPane.showMessageDialog(null, "Thông tin đăng nhập không hợp lệ");

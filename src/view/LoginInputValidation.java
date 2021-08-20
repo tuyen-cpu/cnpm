@@ -2,7 +2,7 @@ package view;
 
 public class LoginInputValidation {
 	
-	static String regularExp = "^(?=.{3,6}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$";
+	static String regularExp = "^[a-z0-9._-]{3,15}$";
 	
 	public static boolean isUnameValid(String text) {
 		if (text.matches(regularExp)) {
