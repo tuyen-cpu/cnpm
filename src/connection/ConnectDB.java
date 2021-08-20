@@ -46,7 +46,7 @@ public class ConnectDB {
 				System.out.println("Database Opened...\n");
 				stmt = c.createStatement();
 				String sql1 = "CREATE TABLE Product " +
-				"(Id int IDENTITY(1,1)primary key not null," +
+				"(Id int AUTO_INCREMENT primary key not null," +
 				"NamePro nvarchar(50)," +
 				"Price float," +
 				"Quantity int," +
@@ -91,6 +91,11 @@ public class ConnectDB {
 		}		
 		
 	return c;
+	}
+
+	public static void main(String[] args) {
+		getConnection();
+	    
 	}
 	
 }

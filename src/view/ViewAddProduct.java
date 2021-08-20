@@ -11,13 +11,17 @@ import javax.swing.*;
 
 
 public class ViewAddProduct extends JFrame implements ActionListener {
-    private JTextField tfNamePro, tfPhoneNum, tfPrice, tfQuantity, tfBranch, tfDescriptions;
+    private JTextField tfId, tfNamePro, tfPhoneNum, tfPrice, tfQuantity, tfBranch, tfDescriptions;
     private JButton btAdd;
+    private JTextArea taDes;
+    private JTable tbInfor;
 
     public ViewAddProduct(){
         super("ViewAddProduct");
         setLayout(new BorderLayout());
-        JPanel p1 = new JPanel(new GridLayout(5,2));
+        JPanel p1 = new JPanel(new GridLayout(6,2));
+        p1.add(new JLabel("Id"));
+        p1.add(tfId = new JTextField(10));
         p1.add(new JLabel("Tên sản phẩm:"));
         p1.add(tfNamePro = new JTextField(10));
         p1.add(new JLabel("Giá:"));
@@ -33,6 +37,14 @@ public class ViewAddProduct extends JFrame implements ActionListener {
         JPanel p2 = new JPanel(new FlowLayout());
         p2.add(btAdd = new JButton("Thêm sản phẩm"));
         add(p2, BorderLayout.CENTER);
+        btAdd.addActionListener(this);
+        
+       
+    }
+    
+    public void setColor(Component c) {
+   
+    	
     }
 
 
@@ -49,15 +61,17 @@ public class ViewAddProduct extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btAdd){
+        	int id = Integer.parseInt(tfId.getText());
             String namePro = tfNamePro.getText();
             double price = Double.parseDouble(tfPrice.getText());
             int quantity = Integer.parseInt(tfQuantity.getText());
             String branch = tfBranch.getText();
             String descriptions = tfDescriptions.getText();
-
-            Product pro = new Product(namePro, price, quantity, branch, descriptions);
+            
+            Product pro = new Product(id, namePro, price, quantity, branch, descriptions);
             ProductDAO pd = new ProductDAO();
             pd.insert(pro);
+            pd.view();
 
         }
     }
