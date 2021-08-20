@@ -117,7 +117,7 @@ public class LoginForm {
 		public void actionPerformed(ActionEvent e) {
 			String uname = unameTxt.getText();
 			char[] pass = passTxt.getPassword();
-			if ((LoginInputValidation.isUnameValid(uname)) && (LoginInputValidation.isPassValid(pass))) {
+			if (LoginInputValidation.isUnameValid(uname)) {
 				String passwd = new String(pass);
 				if (LoginController.findAccount(uname, passwd)) {
 					JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
