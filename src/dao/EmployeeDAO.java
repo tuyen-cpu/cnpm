@@ -13,7 +13,7 @@ public class EmployeeDAO {
 		try {
 			connection = ConnectDB.getConnection();
 			PreparedStatement stmt = connection
-					.prepareStatement("INSERT INTO Employee VALUES ( ?, ?, ?,?)");
+					.prepareStatement("INSERT INTO Employee(FullName,PhoneNum,AddressNum,UserName) VALUES ( ?, ?, ?,?)");
 			stmt.setString(1, employee.getName());
 			stmt.setString(2, employee.getPhoneNum());
 			stmt.setString(3, employee.getAddress());
