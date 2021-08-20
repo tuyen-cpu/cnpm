@@ -40,7 +40,7 @@ public class AccountDAO {
 		return true;
 	}
 
-	public String encodeMD5(String password) {
+	public static String encodeMD5(String password) {
 
 		MessageDigest md;
 		try {
@@ -58,14 +58,16 @@ public class AccountDAO {
 	}
 
 	public static boolean findAcc(String uname, String pass) {
+		String user = "'" + uname + "'";
+		String passwd = "'" + pass + "'";
 		boolean result = false;
 		
 		Connection connection = null;
 		
 		try {
 			connection = ConnectDB.getConnection();
-			PreparedStatement stm = connection.prepareStatement("SELECT * FROM Account "
-					+ "WHERE UserName = uname AND Passwd = pass");
+			PreparedStatement stm = connection.prepareStatement("SELECT * FROM Account WHERE "
+					+ " UserName = " + user + "AND Passwd = " + "'" + encodeMD5(pass) + "'");
 			ResultSet rs = stm.executeQuery();
 			if (rs.next()) result = true; 
 			stm.close();
