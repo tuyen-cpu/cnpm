@@ -44,6 +44,7 @@ public class ViewAddProduct extends JFrame implements ActionListener {
 		btAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+		   
 			if (tfId.getText().equals("") || tfNamePro.getText().equals("") || tfPrice.getText().equals("") || tfQuantity.getText().equals("")
 					|| tfBrand.getText().equals("") || tfDescriptions.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Vui long nhap day du thong tin");

@@ -114,6 +114,11 @@ public class AccountDAO {
 		
 		return result;
 	}
+	public static void main(String[] args) {
+		Account a = new Account("khangtran", "Khangtran1$" , 1);
+		AccountDAO dao = new AccountDAO();
+		dao.insert(a);
+	}
 	
 
 }

@@ -120,7 +120,7 @@ public class LoginForm {
 					if (LoginController.checkPassword(uname, passwd)) {
 						JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
 						mainFrame.setVisible(false);
-						new ViewMain("Màn hình chính");
+//						new ViewMain("Màn hình chính");
 					} else {
 						JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
 					}

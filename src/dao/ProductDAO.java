@@ -49,9 +49,9 @@ public class ProductDAO {
 		try {
 
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from product");
+			ResultSet rs = stmt.executeQuery("select * from account");
 			while (rs.next())
-				System.out.println(rs.getInt(1) + "  " + rs.getString(2));
+				System.out.println(rs.getString(1) + "  " + rs.getString(2));
 			con.close();
 		} catch (Exception e) {
 			System.out.println(e);
@@ -59,9 +59,9 @@ public class ProductDAO {
 	}
 
 	public static void main(String[] args) {
-		Product p = new Product(22, "Iphone 12 pro max", 120000, 4, "Apple", "Sieu cap vip pro");
+//		Product p = new Product(22, "Iphone 12 pro max", 120000, 4, "Apple", "Sieu cap vip pro");
 		ProductDAO dao = new ProductDAO();
-//		dao.insert(p);
+		dao.view();
 		
 
 	}
