@@ -22,11 +22,11 @@ public class ControllerMangaEmpl {
 	AccountDAO accountDAO;
 	String regexUserName="^[a-z0-9._-]{3,15}$";
 	String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,10}";
-//	public ControllerMangaEmpl() {
-//		viewEmployeeManager = new ViewEmployeeManager("Quản lý nhân viên");
-//		viewEmployeeManager.getBtnAdd().addActionListener(e -> showPopupForm());
-//
-//	}
+	public ControllerMangaEmpl() {
+		viewEmployeeManager = new ViewEmployeeManager("Quản lý nhân viên");
+		viewEmployeeManager.getBtnAdd().addActionListener(e -> showPopupForm());
+
+	}
 
 	public void showPopupForm() {
 		viewAddEmpoyee = new ViewAddEmpoyee();
@@ -110,5 +110,8 @@ return true;
 	public void showMessageDilogSuccess(String error){
 		JOptionPane.showMessageDialog(null, error
 				);
+	}
+	public static void main(String[] args) {
+		new ControllerMangaEmpl();
 	}
 }
