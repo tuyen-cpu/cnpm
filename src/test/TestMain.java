@@ -9,7 +9,7 @@ import view.ViewAddEmpoyee;
 
 public class TestMain {
 public static void main(String[] args) {
-new ControllerMangaEmpl();
+new LoginForm();
 }
 
 }

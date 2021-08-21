@@ -15,23 +15,24 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ViewMain {
-	
-public ViewMain(String title){
 
-	ControllerMangaEmpl c = new ControllerMangaEmpl();
-	ViewEmployeeManager viewEmMan= new ViewEmployeeManager("Quản lý nhân viên");
-	ViewAddProduct viewAddProduct = new ViewAddProduct();
-	ViewProductManager viewProductManager = new ViewProductManager();
+	public ViewMain(String title) {
 
-	JFrame frame = new JFrame(title);
-	 JTextArea ta=new JTextArea(200,200);  
-	    JPanel p1=new JPanel();  
-	    p1.add(viewEmMan);
-	    viewEmMan.getBtnAdd().addActionListener(e -> c.showPopupForm());
+		ControllerMangaEmpl c = new ControllerMangaEmpl();
+		ViewEmployeeManager viewEmMan = new ViewEmployeeManager(
+				"Quản lý nhân viên");
+		ViewAddProduct viewAddProduct = new ViewAddProduct();
+		ViewProductManager viewProductManager = new ViewProductManager();
 
-	    JPanel p2=new JPanel();
-	    p2.add(viewProductManager);
-	    viewProductManager.getBtnAdd().addActionListener(new ActionListener() {
+		JFrame frame = new JFrame(title);
+		JTextArea ta = new JTextArea(200, 200);
+		JPanel p1 = new JPanel();
+		p1.add(viewEmMan);
+		viewEmMan.getBtnAdd().addActionListener(e -> c.showPopupForm());
+
+		JPanel p2 = new JPanel();
+		p2.add(viewProductManager);
+		viewProductManager.getBtnAdd().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				viewAddProduct.pack();
@@ -41,22 +42,15 @@ public ViewMain(String title){
 			}
 		});
 
-	 JTabbedPane tp=new JTabbedPane();  
-	    tp.setBounds(50,50,200,200);  
-	    tp.add("Quản lý nhân viên",p1);  
-	    tp.add("Quản lý sản phẩm",p2);  
-	   
-	    
-	    
-	    frame.add(tp);
-	frame.setSize(500, 500);
-	frame.setLocationRelativeTo(null);
-	frame.setVisible(true);
-	
-}
+		JTabbedPane tp = new JTabbedPane();
+		tp.setBounds(50, 50, 200, 200);
+		tp.add("Quản lý nhân viên", p1);
+		tp.add("Quản lý sản phẩm", p2);
+		frame.add(tp);
+		frame.setSize(500, 500);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 
-	public static void main(String[] args) {
-		new ViewMain("View");
 	}
 
 }
