@@ -24,7 +24,7 @@ public class LoginForm {
 	private JTextField unameTxt;
 	private JPasswordField passTxt;
 	private JButton loginBtn;
-
+	JFrame mainFrame;
 	public JLabel getUnameLab() {
 		return unameLab;
 	}
@@ -71,21 +71,17 @@ public class LoginForm {
 
 	// Constructor
 	public LoginForm() {
-		JFrame mainFrame = new JFrame("Login");
+		 mainFrame = new JFrame("Login");
 		mainFrame.setSize(300, 150);
 		mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
 		mainFrame.add(panel);
 		placeComponents(panel);
-		
 		mainFrame.setVisible(true);
+		mainFrame.setLocationRelativeTo(null);
 	}
-
-	public static void main(String[] args) {
-		new LoginForm();
-	}
-
+	
 	public void placeComponents(JPanel pane) {
 		
 		pane.setLayout(null);
@@ -123,6 +119,8 @@ public class LoginForm {
 				if (LoginController.findAccount(uname)) {
 					if (LoginController.checkPassword(uname, passwd)) {
 						JOptionPane.showMessageDialog(null, "Đăng nhập thành công");
+						mainFrame.setVisible(false);
+						new ViewMain("Màn hình chính");
 					} else {
 						JOptionPane.showMessageDialog(null, "Mật khẩu không trùng khớp");
 					}
