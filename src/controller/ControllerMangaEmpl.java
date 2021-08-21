@@ -23,25 +23,19 @@ public class ControllerMangaEmpl {
 	String regexUserName="^[a-z0-9._-]{3,15}$";
 	String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,10}";
 	public ControllerMangaEmpl() {
-		this.txtNameTemp="khoitao";
-		this.txtUserNameTemp="khoitao";
-		this.txtAddressTemp="khoitao";
-		this.txtPhoneTemp="khoitao";
 		viewEmployeeManager = new ViewEmployeeManager("Quản lý nhân viên");
 		viewEmployeeManager.getBtnAdd().addActionListener(e -> showPopupForm());
 
 	}
 
 	public void showPopupForm() {
-		
 		viewAddEmpoyee = new ViewAddEmpoyee();
-		
 		if (viewAddEmpoyee.option() == JOptionPane.OK_OPTION) {
 			if(checkInput()){
 			if(addEmployee()==true){
-				showMessageDilogSuccess("Thêm thành công");
+				showMessageDilogSuccess("Thêm nhân viên thành công!");
 			}else{
-				showMessageDilogError("Trùng tên đăng nhập");
+				showMessageDilogError("Trùng tên đăng nhập!");
 			}
 			}
 			
@@ -54,15 +48,10 @@ public boolean addEmployee(){
 					viewAddEmpoyee.getTxtPasswordConfirm().getPassword()).trim(),1);
 	accountDAO = new AccountDAO();
 	if(accountDAO.insert(account)==true){
-		
-		System.out.println("them xong account");
 	}else{
-		System.out.println("lỗi account");
 		return false;
 	}
 		
-		
-	
 	Employee e = new Employee(viewAddEmpoyee.getTxtName().getText(),
 			viewAddEmpoyee.getTxtPhoneNum().getText(), viewAddEmpoyee
 					.getTxtAdress().getText(),viewAddEmpoyee.getTxtUserName().getText().trim());
@@ -95,7 +84,7 @@ return true;
 			return false;
 		}
 		if(viewAddEmpoyee.getTxtUserName().getText().matches(regexUserName)==false){
-			this.showMessageDilogError("Tên đăng nhập phải tối thiểu 3 và tối đa 15 bao gồm các kí tự từ a-z ác chữ số 0 - 9 và một số kí tự đặc biệt: . - _");
+			this.showMessageDilogError("Tên đăng nhập phải tối thiểu 3 và tối đa 15 kí tự bao gồm các kí tự từ a-z các chữ số 0 - 9 và một số kí tự đặc biệt: . - _");
 			showPopupForm();
 			return false;
 		}
