@@ -117,7 +117,8 @@ public class LoginForm {
 		public void actionPerformed(ActionEvent e) {
 			String uname = unameTxt.getText();
 			char[] pass = passTxt.getPassword();
-			if (LoginInputValidation.isUnameValid(uname)) {
+			if ((LoginInputValidation.isUnameValid(uname)) && 
+					(LoginInputValidation.isPassValid(pass))) {
 				String passwd = new String(pass);
 				if (LoginController.findAccount(uname)) {
 					if (LoginController.checkPassword(uname, passwd)) {
