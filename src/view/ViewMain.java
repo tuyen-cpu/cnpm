@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 import javax.swing.text.View;
 
 import controller.ControllerMangaEmpl;
@@ -50,6 +51,7 @@ public class ViewMain {
 		frame.setSize(500, 500);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 	}
 
